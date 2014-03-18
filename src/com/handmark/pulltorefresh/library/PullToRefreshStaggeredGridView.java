@@ -2,8 +2,10 @@ package com.handmark.pulltorefresh.library;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.BaseAdapter;
 import com.bulletnoid.android.widget.StaggeredGridView.StaggeredGridView;
@@ -42,7 +44,11 @@ public class PullToRefreshStaggeredGridView extends PullToRefreshBase<StaggeredG
         }
 
         int margin = getResources().getDimensionPixelSize(R.dimen.stgv_margin);
-        stgv.setColumnCount(2);
+
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.StaggeredGridView);
+        int numColumns = a.getInteger(R.styleable.StaggeredGridView_numColumns, 2);
+        Log.d(PullToRefreshStaggeredGridView.class.getName(), "numColumns: " + String.valueOf(numColumns));
+        stgv.setColumnCount(numColumns);
         stgv.setItemMargin(margin);
         stgv.setPadding(margin, 0, margin, 0);
 
