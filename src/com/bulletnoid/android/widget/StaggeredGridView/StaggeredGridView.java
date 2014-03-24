@@ -1006,8 +1006,11 @@ public class StaggeredGridView extends ViewGroup {
         }
 
         final int top = getPaddingTop();
-        for (int i = 0; i < Math.max(colCount, mRestoreOffsets.length); i++) {
-            final int offset = top + ((mRestoreOffsets != null) ? Math.min(mRestoreOffsets[i], 0) : 0);
+        for (int i = 0; i < Math.max(colCount, mItemTops.length); i++) {
+
+            int offset = top;
+            if ((mRestoreOffsets != null) && mRestoreOffsets.length > i)
+                offset += Math.min(mRestoreOffsets[i], 0);
             mItemTops[i] = (offset == 0) ? mItemTops[i] : offset;
             mItemBottoms[i] = (offset == 0) ? mItemBottoms[i] : offset;
         }
