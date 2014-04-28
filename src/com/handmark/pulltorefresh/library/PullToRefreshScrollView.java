@@ -22,7 +22,9 @@ import android.os.Build.VERSION_CODES;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ScrollView;
-import com.bulletnoid.android.widget.StaggeredGridViewDemo.R;
+
+import com.origamilabs.library.R;
+
 
 public class PullToRefreshScrollView extends PullToRefreshBase<ScrollView> {
 

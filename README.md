@@ -1,80 +1,59 @@
 StaggeredGridView
-=================
+=======
 
-## A sweeter StaggeredGridView
+## Introduction
 
-This widget is based on [maurycyw/StaggeredGridView][1], which is a modification of Android's experimental StaggeredGridView: [com.android.ex.widget.StaggeredGridView][2]
+This is a modified version of Android's experimental StaggeredGridView. The StaggeredGridView allows the user to create a GridView with uneven rows similar to how Pinterest looks. Includes own OnItemClickListener and OnItemLongClickListener, selector, and fixed position restore.
 
-This widget has fixed some of the major bugs and has some new features that you may be interested.
+## Setup
 
-![](snapshot/snap.png)
-
-## Suggestion
-
-It is very helpful for you to use this widget in your app and understand the restriction in it if you had knowledge of how to create Android custom views;
-http://developer.android.com/guide/topics/ui/custom-components.html has good information about that;
-
-## Features
-
-* Stability and high performance
-
-  This widget fix some bugs of [maurycyw/StaggeredGridView][1]. Such as when fling the view, the scroll sometimes slow down and speed up later.
-
-  Notice that the image loading also has a contribution to the performance. I use [square/Picasso][3], it provides the best performance I've ever seen.
-* Header and Footer View and an Adapter to wrap all child views, just like android.widget.ListView
-
-  Header and footer views can cross columns, but the widget currently only support no more than one header and no more than one footer.
-* Load more when get to the bottom
-
-  You may find the footer view useful here.
-* Work with PullToRefresh
-
-  A compatible part enable this widget to be pulled to refresh.
-
-## Restriction
-
-* You have to determine the dimension of each child view in the widget before the parent the child.measure()
-
-  This is because the after the child is first time added to the parent widget, its size should not be changed, otherwise it may cause gird misalign as you may have seen in [maurycyw/StaggeredGridView][1].
-  
-  eg. You want to display pictures in the widget, and the pictures are loaded from network.
-  The height of each grid is decided by the size of the picture in them.
-  Say, if you set your picture container to WRAP_CONTENT, the size of the pic container may change when the picture is loaded, and then the size of the grid change.
-  This can cause gird misalign. 
-  Unfortunately, the current methodology has nothing to do to fix this. 
-  Instead, you can let this widget know the size of each child before the picture is actually downloaded. 
-  You can do this by overwrite the onMeasure() method of the container.
-
-* Load more is lazy
-
-  When load more, the widget only add new items to the old ones, the old ones is not reloaded.
-
-* Screen rotation
-
-  The widget may have problem holding the state when it is destroyed and restored the them in a different screen orientation.
-  Besides, you may want to change the column number when the screen orientation changed, you'd better rebuild the whole content from start.
-
-## Project structure
-
-Project contains StaggeredGridView library, StaggeredGridView demo, modified PullToRefresh library to work with StaggeredGridView.
-In order to avoid some dependency problems, I add the libs into one project, but it is easy to retrieve the libs.
-* StaggeredGridView lib
-
-  code: src/com.bulletoid.android.widget.StaggeredGridView
-  
-  res: res/stgv_*.xml
-* PullToRefresh lib
-
-  code: src/com.handmark.pulltorefresh.library
-  
-  res: res/ptr_*.xml
+To use StaggeredGridView in your projects, simply add this project to your workspace then add it as a library project to your current project. 
 
 ## Usage
 
-Please refer to the Demo of how to use the widget and use it with PullToRefresh.
+StaggeredGridView can be added as a custom view to any layout. 
 
-## Pictures in the demo are from Pinterest
+Attributes supported (same behavior as GridView): 
+ * numColumns : determines the amount of columns to be drawn
+ * drawSelectorOnTop : determine if selector should be drawn on top
 
-[1]: https://github.com/maurycyw/StaggeredGridView
-[2]: http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android/4.3_r2.1/com/android/ex/widget/StaggeredGridView.java?av=f
-[3]: https://github.com/square/picasso
+```xml
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:staggered="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainLayout">
+
+    <com.origamilabs.library.views.StaggeredGridView
+        android:id="@+id/staggeredGridView1"
+        staggered:numColumns="2"
+        staggered:drawSelectorOnTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+```
+The StaggeredGridView includes its own interface's OnItemClickListener, and OnItemLongClickListener since StaggeredGridView does not extend an AdapterView. Behavior is the same.
+
+```java
+
+onItemClick(StaggeredGridView parent, View view, int position, long id);
+
+onItemLongClick(StaggeredGridView parent, View view, int position, long id);
+```
+
+## Tests
+
+No tests have been written however I have tested this View manually with 2.2.2+ devices. Please report any issues.
+
+
+## TODO:
+
+* implement more custom attributes to mirror GridView's attributes
+* develop tests
+* hideSelector()
+* support multiple choice mode
+* currently restoring position can result in the views to be slightly offset when user flings to the top. This is corrected by checking the offsets when position 0 is reached. Would like to dig deeper into the issue. 
+

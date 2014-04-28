@@ -25,7 +25,7 @@ import android.view.animation.Animation.AnimationListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
-import com.bulletnoid.android.widget.StaggeredGridViewDemo.R;
+import com.origamilabs.library.R;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 @SuppressLint("ViewConstructor")

@@ -19,6 +19,5 @@ local.properties
 .classpath
 .project
 
-# IntelliJ project files
-.idea/
-*.iml
+#gradle
+build

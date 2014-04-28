@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.BaseAdapter;
 import com.bulletnoid.android.widget.StaggeredGridView.StaggeredGridView;
-import com.bulletnoid.android.widget.StaggeredGridViewDemo.R;
+import com.origamilabs.library.R;
 
 public class PullToRefreshStaggeredGridView extends PullToRefreshBase<StaggeredGridView> {
 

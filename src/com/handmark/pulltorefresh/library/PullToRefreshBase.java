@@ -29,8 +29,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import com.bulletnoid.android.widget.StaggeredGridViewDemo.R;
 import com.handmark.pulltorefresh.library.internal.*;
+import com.origamilabs.library.R;
 
 public abstract class PullToRefreshBase<T extends View> extends LinearLayout implements IPullToRefresh<T> {
 

@@ -22,7 +22,8 @@ import android.os.Build.VERSION_CODES;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.HorizontalScrollView;
-import com.bulletnoid.android.widget.StaggeredGridViewDemo.R;
+
+import com.origamilabs.library.R;
 
 public class PullToRefreshHorizontalScrollView extends PullToRefreshBase<HorizontalScrollView> {
 

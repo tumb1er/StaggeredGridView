@@ -40,7 +40,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.*;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.ListAdapter;
-import com.bulletnoid.android.widget.StaggeredGridViewDemo.R;
+import com.origamilabs.library.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
